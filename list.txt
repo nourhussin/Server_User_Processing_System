@@ -1,0 +1,10 @@
+FIFO.sv
+FIFO_IF.sv
+shared_pkg.sv
+fifo_tr_pkg.sv
+fifo_sco_pkg.sv
+fifo_cove_pkg.sv
+monitor.sv
+FIfo_TB.sv
+top.sv
+
