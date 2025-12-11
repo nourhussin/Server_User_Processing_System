@@ -6,6 +6,7 @@ module Server_FSM (
     input wire start,
     input wire [15:0] frame,
     output reg auth_done,
+    output reg auth_fail,
 
 //---------- OPU Interface-----------------
     output reg [1:0] op_code,
@@ -34,9 +35,10 @@ module Server_FSM (
 
         next_state = IDLE;
         auth_done = 0;
+        auth_fail = 0;
         op_start = 0;
         op_code = 0;
-        data = 0;
+        //data = 0;
 
         case(current_state)
         IDLE: begin
@@ -50,8 +52,11 @@ module Server_FSM (
                 auth_done = 1;
                 next_state = Op;
             end
-            else //Authentication Failed
+            else begin //Authentication Failed
+                auth_fail = 1;
                 next_state = IDLE; 
+            end
+                
         end
         Op: begin
             op_start = 1;
